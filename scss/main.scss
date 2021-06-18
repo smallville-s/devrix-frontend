@@ -17,8 +17,7 @@
     
 }
 
-body {
-    
+body {    
     height: 100%;
     overflow-y: scroll;
 }
@@ -26,7 +25,6 @@ body {
 a {
     text-decoration: none;
 }
-
 
 .logo {
     font-family: Roboto;
@@ -49,7 +47,7 @@ a {
     @include flexRow(space-between);
     max-width: 76vw;
     margin-left: auto;
-    margin-right: 50px;
+    margin-right: 30px;
 }
 .social-contacts {
     @include flexRow(space-around);
@@ -79,7 +77,7 @@ a {
         }
         
         &#subscribeBtn {
-            padding: 0 12px;
+            padding: 0 20px;
             font-weight: bold;
             font-size: 16px;
             line-height: 19px;
@@ -166,15 +164,56 @@ nav {
     }
 }
 
-.latest-news {
+.latest {
     margin-top: 48px;
-}
+    gap: 40px;
+    
+    &__headline {
+        align-self: flex-start;
+    }
 
-.hi {
-    z-index: 10;
-    height: 200px;
-}
-.hi2 {
-    align-self: flex-start;
-    justify-content: center;
+    &__news{
+
+        h2 {
+            font-weight: 800;
+            font-size: 16px;
+            margin-bottom: 36px;
+        }
+        
+        article {
+            position: relative;
+            
+            div {
+                position: absolute;
+                top: 5px;
+                content: "";
+                width: 6px;
+                height: 43.04px;
+                background: #D24545;
+                
+            }
+
+            .article-items {
+                padding-left: 20px;
+                padding-bottom: 10px;
+                padding-right: 5px;
+            }
+        }
+
+        h3 {
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 130%;    
+        }
+
+        p {
+            font-size: 14px;
+            line-height: 130%;
+            color: #2F2F2F;
+        }
+
+        hr {
+            margin: 20px 0;
+        }
+    }
 }
