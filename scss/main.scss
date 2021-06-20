@@ -8,7 +8,7 @@
 }
 
 :root {
-    
+
     font-family: SF Pro Text;
     font-style: normal;
     font-weight: normal;
@@ -40,10 +40,10 @@ a {
 @mixin flexRow ($position: center){
     display: flex;
     justify-content: $position;
-    align-items: center;
+    //align-items: center;
 }
 
-@mixin page-width {
+.page-width {
     max-width: 76vw;
     margin-left: auto;
     margin-right: 30px;
@@ -51,15 +51,16 @@ a {
 
 
 .row {
-    @include flexRow(space-between);
-    @include page-width();
-
-    .element {
-        height: 100%;
-    }
+    @include flexRow(space-between);    
 }
+
+.center {
+    align-items: center
+}
+
 .social-contacts {
     @include flexRow(space-around);
+    align-items: center;
     gap: 8px;
     
     div {
@@ -69,6 +70,7 @@ a {
     }
     a {
         @include flexRow();
+        align-items: center;
         min-width: 40px;
         height: 40px;
         background: #EBEBEB;
@@ -162,6 +164,7 @@ nav {
         border-radius: 0px 5px;
         font-weight: 800;
         @include flexRow();
+        align-items: center;
 
         .fa-star {
             font-size: 18px;
@@ -328,6 +331,7 @@ nav {
                 border-radius: 5px 0px;
                 font-weight: 800;
                 @include flexRow();
+                align-items: center;
             }
 
             i {
@@ -353,6 +357,7 @@ nav {
 
         &-item {
             @include flexRow();
+            align-items: center;
             width: 100%;
             height: 100%;
             padding: 0 30px;
@@ -382,22 +387,9 @@ nav {
     }
 }
 
-.section-title {
-    @include page-width();
-    width: 100%;
-    margin-top: 50px;
-    margin-bottom: 23px;
-    hr {
-        border: 2px solid #D24545;
-        border-radius: 5px;
-        margin-bottom: 7px;
-    }
 
-    h2 {
-        font-weight: 800;
-        font-size: 20px;
-        line-height: 24px;
-    }
+.item {
+    width: min-content;        
 }
 
 .column1 {
@@ -406,9 +398,7 @@ nav {
     align-items: flex-start;
     gap: 40px;
         
-    .item {
-        width: min-content;        
-    }
+    
 }
 .arrow-link {   
     font-weight: bold;
@@ -435,9 +425,28 @@ nav {
         margin-top: 12px;
     }
 }
-.news {
-    align-items: unset;
+
+.section {
+    padding-top: 50px;
+
+    &__title {
+        width: 100%;
+        //margin-top: 50px;
+        margin-bottom: 23px;
+
+        hr {
+            border: 2px solid #D24545;
+            border-radius: 5px;
+            margin-bottom: 7px;
+        }
     
+        h2 {
+            font-weight: 800;
+            font-size: 20px;
+            line-height: 24px;
+        }
+    }
+
     h3 {
         margin:18px 0;
         padding-right: 10px;
@@ -450,4 +459,84 @@ nav {
         line-height: 130%;
         color: #2F2F2F;
     }   
+}
+
+.technology {
+    padding-bottom: 80px;
+
+    .container {
+        flex-direction: row-reverse;
+        
+        .column1 {
+            justify-content: flex-end;
+        }
+
+        .column2 {
+            
+            .arrow-link {
+                float: left;
+            }
+        }
+    }
+}
+
+.sport {
+    background: #FAFAFA;
+    border-top: 1px solid #DDDDDD;
+    border-bottom: 1px solid #DDDDDD;
+    padding: 80px 0 72px 0;
+
+    h2 {
+       margin-bottom: 32px;  
+    }
+
+    
+}
+
+.special-features {
+    background: #B53838;
+    color: #FFFFFF;
+    padding: 80px 0 98px 0;
+
+    p {
+        color: #FFFFFF;
+    }
+
+}
+
+footer {
+    background: #D24545;
+    color: #FFFFFF;
+    
+    .footer-content {
+        align-items: center;
+        height: 150px;
+        
+        a {
+            color: #FFFFFF;
+        }
+
+    }
+
+    .logo2 {
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 130%;
+        color: #FAFAFA;
+        width: 71px;
+        height: 71px;
+        @include flexRow();
+        align-items: center;
+        border-radius: 50%;
+        background: #B53838;
+        margin-right: 34px;
+    }
+
+    .social-contacts {
+        margin-left: 42px;
+        
+        a {
+            background: #FFFFFF;
+        }
+    }
 }
