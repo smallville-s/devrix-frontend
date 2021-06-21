@@ -23,6 +23,10 @@ body {
 
 a {
   text-decoration: none;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 130%;
+  color: #000000;
 }
 
 .logo {
@@ -33,6 +37,7 @@ a {
   line-height: 37px;
   color: #6A0B0B;
   padding: 15px 0;
+  cursor: default;
 }
 
 .page-width {
@@ -70,7 +75,6 @@ a {
 
 .social-contacts div {
   display: inline-block;
-  margin: 0;
 }
 
 .social-contacts a {
@@ -136,7 +140,8 @@ nav {
 }
 
 .menu a {
-  color: #000000;
+  font-size: 16px;
+  line-height: 19px;
 }
 
 .menu a:hover {
@@ -158,20 +163,26 @@ nav {
   position: relative;
 }
 
-.background-image img {
+.background-image div {
+  background: url(/images/round.png), #D24545;
+  background-blend-mode: multiply, normal;
+  width: 741px;
+  height: 542.64px;
+  border-radius: 0px 5px 5px 0px;
   position: absolute;
   left: 0;
   top: -2px;
+  max-width: 50vw;
+  max-height: 34vw;
 }
 
 .front-image {
   position: relative;
-  height: 450px;
 }
 
 .front-image__featured {
   position: absolute;
-  bottom: 0;
+  bottom: 5px;
   left: 0;
   width: 140px;
   height: 40px;
@@ -197,6 +208,11 @@ nav {
   margin-right: 5px;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 .latest {
   margin-top: 48px;
   gap: 40px;
@@ -207,6 +223,11 @@ nav {
 
 .latest__headline {
   position: relative;
+}
+
+.latest__headline .headline {
+  width: 0;
+  min-width: 100%;
 }
 
 .latest__headline .headline h1 {
@@ -239,6 +260,7 @@ nav {
 
 .latest__news {
   position: relative;
+  max-width: 39%;
 }
 
 .latest__news h2 {
@@ -262,47 +284,43 @@ nav {
 
 .latest__news article .article-items {
   padding-left: 20px;
-  padding-bottom: 10px;
   padding-right: 5px;
+}
+
+.latest__news article .article-items a {
+  font-weight: 500;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.latest__news article .article-items a:hover {
+  font-weight: bold;
+}
+
+.latest__news article .article-items p {
+  font-size: 14px;
+  line-height: 130%;
+  color: #2F2F2F;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
 }
 
 .latest__news article:last-of-type {
   margin-bottom: 70px;
 }
 
-.latest__news h3 {
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 130%;
-}
-
-.latest__news p {
-  font-size: 14px;
-  line-height: 130%;
-  color: #2F2F2F;
-}
-
 .latest__news hr {
-  margin: 20px 0;
+  margin-top: 30px;
+  margin-bottom: 25px;
 }
 
-.latest__news a {
+.latest__news .arrow-link {
   display: block;
   position: absolute;
   bottom: 0;
   right: 0;
   padding: 12px 0;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 19px;
-  color: black;
-  float: right;
-}
-
-.latest__news a i {
-  font-size: 18px;
-  line-height: 18px;
-  margin-left: 8px;
 }
 
 .secondary {
@@ -351,6 +369,7 @@ nav {
 
 .secondary .breaking-image img {
   border-radius: 10px 0px 0px 5px;
+  max-width: unset;
 }
 
 .secondary .breaking-image div {
@@ -420,11 +439,13 @@ nav {
   font-size: 20px;
   line-height: 130%;
   margin-bottom: 12px;
+  cursor: default;
 }
 
 .secondary__headline-item p {
   font-size: 16px;
   line-height: 130%;
+  cursor: default;
 }
 
 .secondary__headline:hover {
@@ -432,10 +453,20 @@ nav {
   color: white;
 }
 
-.item {
-  width: -webkit-min-content;
-  width: -moz-min-content;
-  width: min-content;
+.item a, .item p {
+  width: 0;
+  min-width: 100%;
+}
+
+.item a {
+  display: block;
+  margin: 18px 0;
+  padding-right: 10px;
+  font-weight: 600;
+}
+
+.news .container, .sex .container, .technology .container, .sport .container, .special-features .container {
+  gap: 30px;
 }
 
 .column1 {
@@ -451,6 +482,15 @@ nav {
       -ms-flex-align: start;
           align-items: flex-start;
   gap: 40px;
+  max-width: 50%;
+}
+
+.column1 .item {
+  -ms-flex-preferred-size: 200px;
+      flex-basis: 200px;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
 }
 
 .arrow-link {
@@ -467,6 +507,10 @@ nav {
   margin-left: 8px;
 }
 
+.arrow-link:hover {
+  color: #D24545;
+}
+
 .column2 {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -478,6 +522,7 @@ nav {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  max-width: 50%;
 }
 
 .column2 .item__resume {
@@ -505,13 +550,6 @@ nav {
   font-weight: 800;
   font-size: 20px;
   line-height: 24px;
-}
-
-.section h3 {
-  margin: 18px 0;
-  padding-right: 10px;
-  font-size: 20px;
-  line-height: 130%;
 }
 
 .section p {
@@ -554,11 +592,10 @@ nav {
 
 .special-features {
   background: #B53838;
-  color: #FFFFFF;
   padding: 80px 0 98px 0;
 }
 
-.special-features p {
+.special-features h2, .special-features a, .special-features p {
   color: #FFFFFF;
 }
 
@@ -597,6 +634,7 @@ footer .logo2 {
   border-radius: 50%;
   background: #B53838;
   margin-right: 34px;
+  cursor: default;
 }
 
 footer .social-contacts {
