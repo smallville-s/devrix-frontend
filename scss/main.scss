@@ -1,26 +1,34 @@
+@import './resets';
+@import './variables';
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
 @import url(//db.onlinewebfonts.com/c/1c45e28f8e86cc89876f003b953cc3e9?family=SF+Pro+Text);
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+@mixin flexRow ($position: center){
+    display: flex;
+    justify-content: $position;
+    align-items: center;
+}
+
+@mixin responsive ($deviceWidth) {
+    @media (max-width: $deviceWidth) {
+        @content;
+    }
 }
 
 :root {
-
     font-family: SF Pro Text;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
-    line-height: 19px;
-    
+    line-height: 19px;  
 }
 
 body {    
     height: 100%;
     overflow-y: scroll;
     overflow-x: hidden;
+    color: $text-color;
 }
 
 a {
@@ -28,57 +36,83 @@ a {
     font-weight: normal;
     font-size: 20px;
     line-height: 130%;
-    color: #000000; 
+    color: $text-color;  
     
-    
+    @include responsive(1200px) {
+        font-size: 1.1em;
+    }  
+    @include responsive(1024px) {
+        font-size: 1em;
+    }   
 }
 
-.logo {
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 32px;
-    line-height: 37px;
-    color: #6A0B0B;
-    padding: 15px 0;
-    cursor: default;
-}
-
-@mixin flexRow ($position: center){
-    display: flex;
-    justify-content: $position;
-    //align-items: center;
+img {
+    max-width: 100%;
+    height: auto;
 }
 
 .page-width {
-    max-width: 76vw;
+    width: 76vw;
     margin-left: auto;
     margin-right: 30px;
+
+    @include responsive(360px) {
+        width: 90vw;
+        margin-right: auto;
+    }
 }
 
 .row {
-    @include flexRow(space-between);  
- 
+
+    @include flexRow(space-between);   
 }
 
-.center {
-    align-items: center
+header {
+
+    .logo {
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 32px;
+        line-height: 37px;
+        color: #6A0B0B;
+        padding: 15px 0;
+        cursor: default;
+    
+        @include responsive(600px) {
+            align-self: center;
+        }
+    }
+
+    .menu:first-of-type {
+        @include responsive(700px) {
+            display: none;
+        }
+    }
+
+    .social-contacts {
+        @include responsive(600px) {
+            flex-wrap: wrap;
+            width: min-content;
+            justify-content: flex-end;
+            margin: 10px 0;
+        }
+    }
 }
 
 .social-contacts {
+
     @include flexRow(space-around);
-    align-items: center;
+    
     gap: 8px;
     
     div {
-        display: inline-block;
-        
-        
+        display: inline-block;       
     }
+
     a {
         @include flexRow();
-        align-items: center;
-        min-width: 40px;
+        width: 40px;
         height: 40px;
         background: #EBEBEB;
         border-radius: 5px;
@@ -101,21 +135,36 @@ a {
             line-height: 19px;
             color: #FFFFFF;
             background-color: black;
+            width: max-content;
+
+            @include responsive(600px) {
+                font-size: 0.81em;
+                padding: 0 10px;
+            }
         }
     }
 }
+
 hr {
-    border-top: 1px solid #DDDDDD;
-    
+    border-top: 1px solid #DDDDDD;  
 }
 nav {
     margin: 0.75em 0;
+
+    .bars {
+        display: none;
+
+        @include responsive(700px) {
+            display: block;
+        }
+    }
 }
 
 .menu {
     list-style: none;
+
     @include flexRow(flex-start);
-    
+
     li:not(:last-child)::after {
         vertical-align: top;
         content: "|";
@@ -123,11 +172,30 @@ nav {
         color: #DDDDDD;
         margin: 0 22px;
         
+        @include responsive(1200px) {
+            margin: 0 12px;
+        }
+
+        @include responsive(768px) {
+            margin: 0 6px;
+        }
+
+        @include responsive(700px) {
+            margin: 0 12px;
+        }
     }
 
     a {
         font-size: 16px;
         line-height: 19px;
+        
+        @include responsive(1200px) {
+            font-size: 0.9em;
+        }
+
+        @include responsive(768px) {
+            font-size: 0.8em;
+        }
 
         &:hover {
             font-weight: bold;
@@ -143,6 +211,10 @@ nav {
         color: #D14343;
         margin-top: -5px;
         margin-right: 10px;
+
+        @include responsive(768px) {
+            font-size: 1.1em;
+        }
     }
 }
 
@@ -150,7 +222,7 @@ nav {
     position: relative;
     
     div {
-        background: url(/images/round.png), #D24545;
+        background: url(/images/round.png), $primary-color;
         background-blend-mode: multiply, normal;
         width: 741px;
         height: 542.64px;
@@ -160,17 +232,25 @@ nav {
         top:-2px;
         max-width: 50vw;
         max-height: 34vw;
-    }
-    
+
+        @include responsive(1200px) {
+            max-height: 37vw;
+        }
+
+        @include responsive(768px) {
+            max-width: 80vw;
+            max-height: 62vw;
+        }
+
+        @include responsive(360px) {
+            max-height: 72vw;
+        } 
+    }  
 }
 
 .front-image {
     position: relative;
     
-    img {
-        //max-width: 40vw;
-    }
-
     &__featured {
         position: absolute;
         bottom: 5px;
@@ -181,39 +261,70 @@ nav {
         background: white;
         border-radius: 0px 5px;
         font-weight: 800;
+
         @include flexRow();
-        align-items: center;
 
         .fa-star {
             font-size: 18px;
             line-height: 21px;
-            color: #D24545;
+            color: $primary-color;
             margin-right: 5px;
         }
     }
 }
-img {
-    max-width: 100%;
-    height: auto;
+
+.arrow-link {   
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 19px;
+    color:black;
+    float: right;
+
+    i {
+        font-size: 18px;
+        line-height: 18px;
+        margin-left: 8px;
+    }
+
+    &:hover {
+        color: $primary-color;
+    }
 }
+
 .latest {
     margin-top: 48px;
     gap: 40px;
     align-items: unset;
 
+    @include responsive(768px) {
+        flex-wrap: wrap;
+    }
+
+    @include responsive(360px) {
+        margin-top: 24px;
+    }
+
     &__headline {
         position: relative;
-        //display: inline-block;
         
         .headline {
             width: 0;
             min-width: 100%;
+
             h1 {
                 margin-top: 70px;
                 margin-bottom: 15px;
                 font-weight: 800;
                 font-size: 34px;
                 line-height: 41px;
+
+                @include responsive(1200px) {
+                    font-size: 1.8em;
+                }
+
+                @include responsive(360px) {
+                    margin-top: 30px;
+                }
             }
     
             p {
@@ -242,6 +353,10 @@ img {
     &__news{
         position: relative;
         max-width: 39%;
+
+        @include responsive(768px) {
+            max-width: 100%
+        }
         
         h2 {
             font-weight: 800;
@@ -257,8 +372,14 @@ img {
                 top: 5px;
                 content: "";
                 width: 6px;
-                height: 43.04px;
-                background: #D24545;    
+                height: 2.7em;
+                background: $primary-color; 
+                
+                @include responsive(1024px) {
+                    top: 0;
+                    width: 4px;
+                    height: 2em;
+                }
             }
 
             .article-items {
@@ -278,8 +399,12 @@ img {
                 p {
                     font-size: 14px;
                     line-height: 130%;
-                    color: #2F2F2F;
+                    color: $published-color;
                     width: max-content;
+
+                    @include responsive(1024px) {
+                        font-size: 12px;
+                    }
                 } 
             }
 
@@ -290,7 +415,12 @@ img {
 
         hr {
             margin-top: 30px;
-            margin-bottom: 25px;    
+            margin-bottom: 25px;
+            
+            @include responsive(1024px) {
+                margin-top: 20px;
+                margin-bottom: 20px;
+            }
         }
 
         .arrow-link {
@@ -308,9 +438,11 @@ img {
     align-items: unset;
     justify-content: stretch;
     gap: 8px;
-
+    
     .flex-container {
+
         @include flexRow();
+
         flex-wrap: wrap;
         gap: 8px;
         width: fit-content;
@@ -320,6 +452,10 @@ img {
     .breaking {
         position: relative;
         width: 170px;
+            
+        @include responsive(360px) {
+            width: 100px;
+        }
         
         &-image {
             position: absolute;
@@ -346,21 +482,33 @@ img {
                 background: white;
                 border-radius: 5px 0px;
                 font-weight: 800;
+
                 @include flexRow();
-                align-items: center;
+
+                @include responsive(360px) {
+                    font-size: 12px;
+                    justify-content: flex-start;
+                }
             }
 
             i {
                 font-size: 18px;
                 line-height: 18px;
-                color: #D24545;
+                color: $primary-color;
                 margin-right: 10px;
+
+                @include responsive(360px) {
+                    font-size: 14px;
+                    margin-right: 6px;
+                }
             }
         }
     } 
 
     &__headline {
+
         @include flexRow();
+        
         height: 222px;
         background: #FFFFFF;
         border: 1px solid #DFDFDF;
@@ -368,14 +516,34 @@ img {
         padding: 24px;
         flex: 1 1 400px;
 
+        @include responsive(1200px) {
+            padding: 16px;
+            flex-basis: 300px;
+        }
+
+        @include responsive(768px) {
+            height: 107px;
+        }
+
+        @include responsive(360px) {
+            padding: 6px;
+        }
+
         &-item {
             @include flexRow();
-            align-items: center;
             width: 100%;
             height: 100%;
             padding: 0 30px;
             border: 1px solid #FFFFFF;
             border-radius: 3px;
+
+            @include responsive(1024px) {
+                padding: 20px;
+            }
+
+            @include responsive(360px) {
+                padding: 6px;
+            }
 
             h2 {
                 font-weight: 600;
@@ -383,18 +551,105 @@ img {
                 line-height: 130%;
                 margin-bottom: 12px;
                 cursor: default;
+
+                @include responsive(1024px) {
+                    font-size: 1em;
+                    text-align: center;
+                } 
+
+                @include responsive(360px) {
+                    font-size: 0.8em;
+                    margin-bottom: 6px;
+                }
             }
 
             p {
                 font-size: 16px;
                 line-height: 130%;
                 cursor: default;
+
+                @include responsive(1024px) {
+                    font-size: 0.8em;
+                    text-align: center;
+                }
+
+                @include responsive(360px) {
+                    font-size: 10px;
+                }
             }
         }
 
         &:hover {
-            background: #D24545;
+            background: $primary-color;
             color: white;
+        }
+    }
+}
+
+.section {
+    padding-top: 50px;
+
+    &__title {
+        
+        margin-bottom: 23px;
+
+        hr {
+            border: 2px solid $primary-color;
+            border-radius: 5px;
+            margin-bottom: 7px;
+        }
+    
+        h2 {
+            font-weight: 800;
+            font-size: 20px;
+            line-height: 24px;
+        }
+    }
+
+    img {
+        @include responsive(360px) {
+            width: 90vw;
+        }
+    }
+
+    p {
+        font-size: 14px;
+        line-height: 130%;
+        color: $published-color;
+    }   
+}
+
+.news, .sex, .technology, .sport, .special-features {
+
+    .container {
+        align-items: unset;
+        gap: 30px;
+    }
+    
+}
+
+.news, .technology, .sport {
+    
+    .container {
+        
+        @include responsive(768px) {
+            flex-wrap: wrap;
+        }
+    }
+}
+
+.sex, .special-features {
+    .container {
+        @include responsive(360px) {
+            flex-wrap: wrap;
+        }
+    }
+}
+
+.sport, .special-features {
+    .page-width {
+        @include responsive(360px) {
+            justify-content: center;
         }
     }
 }
@@ -413,13 +668,7 @@ img {
         font-weight: 600;
     }
 }
-.news, .sex, .technology, .sport, .special-features {
 
-    .container {
-        gap: 30px;
-    }
-    
-}
 .column1 {
     @include flexRow(flex-start);
     flex-wrap: wrap;
@@ -427,69 +676,45 @@ img {
     gap: 40px;
     max-width: 50%;    
     
+    @include responsive(768px) {
+        max-width: 100%;
+    }
+
+    @include responsive(360px) {
+        justify-content: center;
+    }
+
     .item {
         flex-basis: 200px;
         flex-grow: 1;
-    }
-}
-.arrow-link {   
-    font-weight: bold;
-    font-size: 16px;
-    line-height: 19px;
-    color:black;
-    float: right;
 
-    i {
-        font-size: 18px;
-        line-height: 18px;
-        margin-left: 8px;
-    }
-
-    &:hover {
-        color: #D24545;
+        @include responsive(1024px) {
+            flex-basis: 170px;
+        } 
+        
+        @include responsive(360px) {
+            flex-basis: unset;
+            flex-grow: 0;
+        }
     }
 }
 
 .column2 {
-    display: flex;
+    @include flexRow(space-between);
+    align-items: unset;
     flex-direction: column;
-    justify-content: space-between;
     max-width: 50%;
+
+    @include responsive(768px) {
+        max-width: 100%;
+    }
+
     .item__resume {
         font-size: 16px;
         line-height: 150%;
         margin-top: 12px;
+        color: $text-color;
     }
-}
-
-.section {
-    padding-top: 50px;
-
-    &__title {
-        width: 100%;
-        //margin-top: 50px;
-        margin-bottom: 23px;
-
-        hr {
-            border: 2px solid #D24545;
-            border-radius: 5px;
-            margin-bottom: 7px;
-        }
-    
-        h2 {
-            font-weight: 800;
-            font-size: 20px;
-            line-height: 24px;
-        }
-    }
-
-    
-
-    p {
-        font-size: 14px;
-        line-height: 130%;
-        color: #2F2F2F;
-    }   
 }
 
 .technology {
@@ -497,9 +722,17 @@ img {
 
     .container {
         flex-direction: row-reverse;
+
+        @include responsive(768px) {
+            flex-direction: column-reverse;
+        }
         
         .column1 {
             justify-content: flex-end;
+
+            @include responsive(360px) {
+                justify-content: center;
+            }
         }
 
         .column2 {
@@ -517,11 +750,21 @@ img {
     border-bottom: 1px solid #DDDDDD;
     padding: 80px 0 72px 0;
 
-    h2 {
-       margin-bottom: 32px;  
+    .item {
+        flex-basis: 250px;
+
+        @include responsive(600px) {
+            flex-basis: 200px;
+        } 
+
+        @include responsive(360px) {
+            flex-basis: unset;
+        } 
     }
 
-    
+    h2 {
+       margin-bottom: 32px;  
+    }   
 }
 
 .special-features {
@@ -531,41 +774,64 @@ img {
     h2, a, p {
         color: #FFFFFF;
     }
-
 }
 
 footer {
-    background: #D24545;
+    background: $primary-color;
     color: #FFFFFF;
     
     .footer-content {
-        align-items: center;
-        height: 150px;
+        min-height: 150px;
+
+        @include responsive(600px) {
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
         
         a {
             color: #FFFFFF;
         }
-
     }
 
-    .logo2 {
+    .logo {
         font-weight: 500;
         font-size: 20px;
         line-height: 130%;
         color: #FAFAFA;
-        width: 71px;
-        height: 71px;
-        @include flexRow();
-        align-items: center;
+        min-width: 71px;
+        min-height: 71px;
         border-radius: 50%;
         background: #B53838;
         margin-right: 34px;
         cursor: default;
+
+        @include flexRow();
+
+        @include responsive(1024px) {
+            margin-right: 20px;
+        }
+    }
+
+    @include responsive(1024px) {
+
+        .menu {
+            flex-wrap: wrap;
+            width: 90%;
+        }
+
+        p {
+            font-size: 0.9em;
+            width: max-content;
+        }  
     }
 
     .social-contacts {
         margin-left: 42px;
         
+        @include responsive(1024px) {
+            margin-left: 20px;
+        }
+
         a {
             background: #FFFFFF;
         }
