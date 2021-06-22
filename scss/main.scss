@@ -78,6 +78,7 @@ header {
         color: #6A0B0B;
         padding: 15px 0;
         cursor: default;
+        width: 60%;
     
         @include responsive(600px) {
             align-self: center;
@@ -93,7 +94,7 @@ header {
     .social-contacts {
         @include responsive(600px) {
             flex-wrap: wrap;
-            width: min-content;
+            width: max-content;
             justify-content: flex-end;
             margin: 10px 0;
         }
@@ -138,7 +139,7 @@ header {
             width: max-content;
 
             @include responsive(600px) {
-                font-size: 0.81em;
+                font-size: 0.82em;
                 padding: 0 10px;
             }
         }
@@ -439,6 +440,15 @@ nav {
     justify-content: stretch;
     gap: 8px;
     
+    @extend .page-width;
+    width: calc(76vw + 30px);
+    margin-right: 0;
+    overflow: hidden;
+
+    @include responsive(360px) {
+        width: calc(90vw + 15px);
+    }
+
     .flex-container {
 
         @include flexRow();
@@ -790,6 +800,7 @@ footer {
         
         a {
             color: #FFFFFF;
+            margin: 8px auto;
         }
     }
 
@@ -816,7 +827,7 @@ footer {
 
         .menu {
             flex-wrap: wrap;
-            width: 90%;
+            width: 80%;
         }
 
         p {

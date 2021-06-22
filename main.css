@@ -47,14 +47,14 @@ img {
   height: auto;
 }
 
-.page-width {
+.page-width, .secondary {
   width: 76vw;
   margin-left: auto;
   margin-right: 30px;
 }
 
 @media (max-width: 360px) {
-  .page-width {
+  .page-width, .secondary {
     width: 90vw;
     margin-right: auto;
   }
@@ -81,6 +81,7 @@ header .logo {
   color: #6A0B0B;
   padding: 15px 0;
   cursor: default;
+  width: 60%;
 }
 
 @media (max-width: 600px) {
@@ -101,9 +102,9 @@ header .logo {
   header .social-contacts {
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
-    width: -webkit-min-content;
-    width: -moz-min-content;
-    width: min-content;
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
     -webkit-box-pack: end;
         -ms-flex-pack: end;
             justify-content: flex-end;
@@ -168,7 +169,7 @@ header .logo {
 
 @media (max-width: 600px) {
   .social-contacts a#subscribeBtn {
-    font-size: 0.81em;
+    font-size: 0.82em;
     padding: 0 10px;
   }
 }
@@ -525,6 +526,15 @@ nav .bars {
       -ms-flex-pack: stretch;
           justify-content: stretch;
   gap: 8px;
+  width: calc(76vw + 30px);
+  margin-right: 0;
+  overflow: hidden;
+}
+
+@media (max-width: 360px) {
+  .secondary {
+    width: calc(90vw + 15px);
+  }
 }
 
 .secondary .flex-container {
@@ -787,7 +797,7 @@ nav .bars {
 }
 
 @media (max-width: 360px) {
-  .sport .page-width, .special-features .page-width {
+  .sport .page-width, .sport .secondary, .special-features .page-width, .special-features .secondary {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
@@ -995,6 +1005,7 @@ footer .footer-content {
 
 footer .footer-content a {
   color: #FFFFFF;
+  margin: 8px auto;
 }
 
 footer .logo {
@@ -1029,7 +1040,7 @@ footer .logo {
   footer .menu {
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
-    width: 90%;
+    width: 80%;
   }
   footer p {
     font-size: 0.9em;
