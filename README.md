@@ -1,5 +1,3 @@
-# devrix-frontend
-
-DevriX Front-End Assignment
+Front-End Implementation
 
 HTML, Sass
